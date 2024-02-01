@@ -16,6 +16,27 @@ const four = document.getElementById('4');
 const five = document.getElementById('5');
 const six = document.getElementById('6');
 
+// operations
+const plus = document.getElementById('+');
+const minus = document.getElementById('-');
+const times = document.getElementById('*');
+const divide = document.getElementById('/');
+
+//events
+plus.addEventListener('click', () => {
+    display.value += ''
+});
+minus.addEventListener('click', () => {
+    display.value += ''
+});
+times.addEventListener('click', () => {
+    display.value += ''
+});
+divide.addEventListener('click', () => {
+    display.value += ''
+});
+
+
 const Cero = document.getElementById('0');
 const DobleCero = document.getElementById('00');
 
