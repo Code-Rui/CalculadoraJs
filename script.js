@@ -22,18 +22,18 @@ const minus = document.getElementById('-');
 const times = document.getElementById('*');
 const divide = document.getElementById('/');
 
-//events
+//events operations
 plus.addEventListener('click', () => {
-    display.value += ''
+    display.value = ''
 });
 minus.addEventListener('click', () => {
-    display.value += ''
+    display.value = ''
 });
 times.addEventListener('click', () => {
-    display.value += ''
+    display.value = ''
 });
 divide.addEventListener('click', () => {
-    display.value += ''
+    display.value = ''
 });
 
 
