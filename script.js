@@ -2,6 +2,7 @@
 const display = document.getElementById('display');
 
 const AC = document.getElementById('ac');
+const DOT = document.getElementById('dot');
 
 const one = document.getElementById('1');
 const two = document.getElementById('2');
@@ -44,6 +45,10 @@ six.addEventListener('click', () => {
 
 AC.addEventListener('click', () => {
     display.value = '';
+});
+
+DOT.addEventListener('click', () => {
+    display.value += DOT.value;
 });
 
 Seven.addEventListener('click', () => {
