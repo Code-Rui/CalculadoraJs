@@ -2,6 +2,7 @@
 const display = document.getElementById('display');
 
 const AC = document.getElementById('ac');
+const DOT = document.getElementById('dot');
 
 const one = document.getElementById('1');
 const two = document.getElementById('2');
@@ -36,6 +37,9 @@ divide.addEventListener('click', () => {
 });
 
 
+const Cero = document.getElementById('0');
+const DobleCero = document.getElementById('00');
+
 // detectamos el evento click de cada elemento
 one.addEventListener('click', () => {
     display.value += one.value;
@@ -67,6 +71,10 @@ AC.addEventListener('click', () => {
     display.value = '';
 });
 
+DOT.addEventListener('click', () => {
+    display.value += DOT.value;
+});
+
 Seven.addEventListener('click', () => {
     display.value += Seven.value;
 });
@@ -77,5 +85,13 @@ eigth.addEventListener('click', () => {
 
 Nine.addEventListener('click', () => {
     display.value += Nine.value;
+});
+
+Cero.addEventListener('click', () => {
+    display.value += Cero.value;
+});
+
+DobleCero.addEventListener('click', () => {
+    display.value += DobleCero.value;
 });
 
