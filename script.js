@@ -3,6 +3,7 @@ const display = document.getElementById('display');
 
 const AC = document.getElementById('ac');
 const DOT = document.getElementById('dot');
+const DE = document.getElementById('de');
 
 const one = document.getElementById('1');
 const two = document.getElementById('2');
@@ -155,6 +156,12 @@ DOT.addEventListener('click', () => {
         display.value += DOT.value;
     }
 
+});
+
+DE.addEventListener('click',()=>{
+    if (buttonEqualStatus) return;
+    const currentValue = display.value;
+    display.value= currentValue.slice(0, -1);   
 });
 
 Seven.addEventListener('click', () => {
