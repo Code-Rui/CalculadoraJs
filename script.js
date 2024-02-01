@@ -22,9 +22,37 @@ const minus = document.getElementById('-');
 const times = document.getElementById('*');
 const divide = document.getElementById('/');
 
+const equal = document.getElementById('=');
+
+var num1 = null;
+var num2 = null;
+// var result = null;
+
+var buttonAddStatus = false; // suma
+var buttonMinusStatus = false; // resta
+var buttonTimesStatus = false; // multiplicacion
+var buttonDivideStatus = false; // division
+
+
+var buttonEqualStatus = false;
+
 //events operations
+// SUMAR
 plus.addEventListener('click', () => {
-    display.value = ''
+    // si el input no esta vacio
+    // guardamos el valor en num1
+
+    if (num1 === null && buttonAddStatus === false) {
+        buttonAddStatus = true;
+        num1 = parseFloat(display.value);
+        display.value = ''
+    }
+    // else {
+    //     num2 = parseFloat(display.value);
+    //     display.value = ''
+    //     // display.value = SUMAR(num1, num2);
+    // }
+    console.log(num1, num2);
 });
 minus.addEventListener('click', () => {
     display.value = ''
@@ -36,32 +64,49 @@ divide.addEventListener('click', () => {
     display.value = ''
 });
 
+// igual
+equal.addEventListener('click', () => {
+    if (num1 !== null) {
+        num2 = parseFloat(display.value);
+    }
+    if (buttonAddStatus === true) {
+        display.value = SUMAR(num1, num2);
+        clear();
+    }
+    buttonEqualStatus = true;
+});
 
 const Cero = document.getElementById('0');
 const DobleCero = document.getElementById('00');
 
 // detectamos el evento click de cada elemento
 one.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += one.value;
 });
 
 two.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += two.value;
 });
 
 three.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += three.value;
 });
 
 four.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += four.value;
 });
 
 five.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += five.value;
 });
 
 six.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += six.value;
 });
 
@@ -69,9 +114,11 @@ six.addEventListener('click', () => {
 
 AC.addEventListener('click', () => {
     display.value = '';
+    clear();
 });
 
 DOT.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     // si ya existe un punto no se puede agregar otro
     if (display.value.includes('.')) {
         return;
@@ -83,25 +130,48 @@ DOT.addEventListener('click', () => {
     } else {
         display.value += DOT.value;
     }
+
 });
 
 Seven.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += Seven.value;
 });
 
 eigth.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += eigth.value;
 });
 
 Nine.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += Nine.value;
 });
 
 Cero.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += Cero.value;
 });
 
 DobleCero.addEventListener('click', () => {
+    if (buttonEqualStatus) return;
     display.value += DobleCero.value;
 });
 
+// funciones para las operaciones
+// sumar
+function SUMAR(num1, num2) {
+    return num1 + num2;
+}
+
+// borramos las variables
+function clear() {
+    num1 = null;
+    num2 = null;
+    result = null;
+    buttonAddStatus = false;
+    buttonEqualStatus = false;
+    buttonMinusStatus = false;
+    buttonTimesStatus = false;
+    buttonDivideStatus = false;
+}
