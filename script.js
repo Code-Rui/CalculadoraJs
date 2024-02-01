@@ -72,7 +72,17 @@ AC.addEventListener('click', () => {
 });
 
 DOT.addEventListener('click', () => {
-    display.value += DOT.value;
+    // si ya existe un punto no se puede agregar otro
+    if (display.value.includes('.')) {
+        return;
+    }
+    // si el input esta vacio no se puede agregar un punto
+    if (display.value === '') {
+        display.value = '0.';
+        return;
+    } else {
+        display.value += DOT.value;
+    }
 });
 
 Seven.addEventListener('click', () => {
