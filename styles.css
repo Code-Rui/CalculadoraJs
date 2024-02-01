@@ -1,4 +1,4 @@
-body{
+body {
     text-align: center;
     margin: 0;
     background: #6dc3fc;
@@ -8,7 +8,7 @@ body{
     height: 100vh;
 }
 
-#calculator{
+#calculator {
     max-width: 360px;
     background-color: #0d1b2a;
     border-radius: 10px;
@@ -16,7 +16,7 @@ body{
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
 }
 
-#display{
+#display {
     width: 100%;
     height: 56px;
     font-size: 20px;
@@ -30,19 +30,19 @@ body{
     box-sizing: border-box;
 }
 
-.operator{
+.operator {
     color: #219ebc;
 }
 
-#ac{
+#ac {
     color: #bf4d5d;
 }
 
-.equal{
+.equal {
     width: calc(50% - 10px);
 }
 
-button{
+button {
     width: calc(25% - 10px);
     height: 50px;
     font-size: 20px;
@@ -55,4 +55,16 @@ button{
     -webkit-box-shadow: -1px 1px 30px -5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: -1px 1px 30px -5px rgba(0, 0, 0, 0.2);
     box-shadow: -1px 1px 30px -5px rgba(0, 0, 0, 0.2);
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #1f3a59b3;
+}
+
+button:hover {
+    background-color: #1f4068;
+    color: #f0f1ed;
+}
+
+#display {
+    background: #202e3d;
 }
