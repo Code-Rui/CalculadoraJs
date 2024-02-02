@@ -53,7 +53,7 @@ plus.addEventListener('click', () => {
     //     display.value = ''
     //     // display.value = SUMAR(num1, num2);
     // }
-    console.log(num1, num2);
+    // console.log(num1, num2);
 });
 minus.addEventListener('click', () => {
     if (num1 === null && buttonMinusStatus=== false) {
