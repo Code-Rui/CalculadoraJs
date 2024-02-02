@@ -1,8 +1,6 @@
 //  hacer match cada elemento
 const display = document.getElementById('display');
-
 const history = document.getElementById('mini-historial');
-
 const AC = document.getElementById('ac');
 const DOT = document.getElementById('dot');
 const DE = document.getElementById('de');
@@ -66,6 +64,15 @@ minus.addEventListener('click', () => {
         buttonMinusStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
+        history.innerHTML = num1 + '-';
+    } else {
+        num2 = parseFloat(display.value);
+        display.value = RESTAR(num1, num2);
+        num1 = parseFloat(display.value);
+        result = true;
+        // añaadimos el historial
+        // preguntamos si existe un caracter +, al ultimo caracter
+        history.innerHTML += history.innerHTML.charAt(history.innerHTML.length - 1) === '-' ? num2 : '-' + num2;
     }
 });
 times.addEventListener('click', () => {
@@ -73,6 +80,15 @@ times.addEventListener('click', () => {
         buttonTimesStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
+        history.innerHTML = num1 + '*';
+    }else {
+        num2 = parseFloat(display.value);
+        display.value = MULTIPLICAR(num1, num2);
+        num1 = parseFloat(display.value);
+        result = true;
+        // añaadimos el historial
+        // preguntamos si existe un caracter +, al ultimo caracter
+        history.innerHTML += history.innerHTML.charAt(history.innerHTML.length - 1) === '*' ? num2 : '*' + num2;
     }
 });
 divide.addEventListener('click', () => {
