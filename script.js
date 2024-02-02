@@ -42,24 +42,29 @@ var buttonEqualStatus = false;
 plus.addEventListener('click', () => {
     // si el input no esta vacio
     // guardamos el valor en num1
-
-    if (num1 === null && buttonAddStatus === false) {
+    if (num1!==null) {  
+        if (num2===null) {
+            buttonAddStatus = true;
+            num2 = parseFloat(display.value);
+            display.value = SUMAR(num1, num2);
+            num1= parseFloat(display.value);
+            clear();
+        }    
+    }
+    else
+    {
         buttonAddStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
     }
-    // else {
-    //     num2 = parseFloat(display.value);
-    //     display.value = ''
-    //     // display.value = SUMAR(num1, num2);
-    // }
-    console.log(num1, num2);
+    
 });
 minus.addEventListener('click', () => {
     if (num1 === null && buttonMinusStatus=== false) {
         buttonMinusStatus= true;
         num1 = parseFloat(display.value);
         display.value = ''
+        
     }
 });
 times.addEventListener('click', () => {
@@ -67,6 +72,7 @@ times.addEventListener('click', () => {
         buttonTimesStatus= true;
         num1 = parseFloat(display.value);
         display.value = ''
+        
     }
 });
 divide.addEventListener('click', () => {
@@ -84,6 +90,7 @@ equal.addEventListener('click', () => {
     }
     if (buttonAddStatus === true) {
         display.value = SUMAR(num1, num2);
+        SUMAR(num1,num2)= num1;
         clear();
     }
     buttonEqualStatus = true;
@@ -108,31 +115,68 @@ const DobleCero = document.getElementById('00');
 one.addEventListener('click', () => {
     if (buttonEqualStatus) return;
     display.value += one.value;
+    if (num1==null) {
+        display.value += one.value;
+    }
+    else{
+        display.value = ''
+        display.value += one.value;
+    }
 });
 
 two.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += two.value;
+    if (num1==null) {
+        display.value += two.value;
+    }
+    else{
+        display.value = ''
+        display.value += two.value;
+    }
 });
 
 three.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += three.value;
+    if (num1==null) {
+        display.value += three.value;
+    }
+    else{
+        display.value = ''
+        display.value += three.value;
+    }
 });
 
 four.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += four.value;
+    if (num1==null) {
+        display.value += four.value;
+    }
+    else{
+        display.value = ''
+        display.value += four.value;
+    }
 });
 
 five.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += five.value;
+    if (num1==null) {
+        display.value += five.value;
+    }
+    else{
+        display.value = ''
+        display.value += five.value;
+    }
 });
 
 six.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += six.value;
+    if (num1==null) {
+        display.value += six.value;
+    }
+    else{
+        display.value = ''
+        display.value += six.value;
+    }
 });
 
 
@@ -140,6 +184,7 @@ six.addEventListener('click', () => {
 AC.addEventListener('click', () => {
     display.value = '';
     clear();
+    num1=null;
 });
 
 DOT.addEventListener('click', () => {
@@ -155,9 +200,7 @@ DOT.addEventListener('click', () => {
     } else {
         display.value += DOT.value;
     }
-
 });
-
 DE.addEventListener('click',()=>{
     if (buttonEqualStatus) return;
     const currentValue = display.value;
@@ -166,27 +209,57 @@ DE.addEventListener('click',()=>{
 
 Seven.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += Seven.value;
+    if (num1==null) {
+        display.value += Seven.value;
+    }
+    else{
+        display.value = ''
+        display.value += Seven.value;
+    }
 });
 
 eigth.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += eigth.value;
+    if (num1==null) {
+        display.value += eigth.value;
+    }
+    else{
+        display.value = ''
+        display.value += eigth.value;
+    }
 });
 
 Nine.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += Nine.value;
+    if (num1==null) {
+        display.value += Nine.value;
+    }
+    else{
+        display.value = ''
+        display.value += Nine.value;
+    }
 });
 
 Cero.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += Cero.value;
+    if (num1==null) {
+        display.value += Cero.value;
+    }
+    else{
+        display.value = ''
+        display.value += Cero.value;
+    }
 });
 
 DobleCero.addEventListener('click', () => {
     if (buttonEqualStatus) return;
-    display.value += DobleCero.value;
+    if (num1==null) {
+        display.value += DobleCero.value;
+    }
+    else{
+        display.value = ''
+        display.value += DobleCero.value;
+    }
 });
 
 // funciones para las operaciones
@@ -205,8 +278,7 @@ function DIVIDIR(num1, num2){
 }    
 // borramos las variables
 function clear() {
-    num1 = null;
-    num2 = null;
+    num2= null;
     result = null;
     buttonAddStatus = false;
     buttonEqualStatus = false;
