@@ -3,6 +3,7 @@ const display = document.getElementById('display');
 
 const AC = document.getElementById('ac');
 const DOT = document.getElementById('dot');
+const DE = document.getElementById('de');
 
 const one = document.getElementById('1');
 const two = document.getElementById('2');
@@ -52,16 +53,28 @@ plus.addEventListener('click', () => {
     //     display.value = ''
     //     // display.value = SUMAR(num1, num2);
     // }
-    console.log(num1, num2);
+    // console.log(num1, num2);
 });
 minus.addEventListener('click', () => {
-    display.value = ''
+    if (num1 === null && buttonMinusStatus=== false) {
+        buttonMinusStatus= true;
+        num1 = parseFloat(display.value);
+        display.value = ''
+    }
 });
 times.addEventListener('click', () => {
-    display.value = ''
+    if (num1 === null && buttonTimesStatus=== false) {
+        buttonTimesStatus= true;
+        num1 = parseFloat(display.value);
+        display.value = ''
+    }
 });
 divide.addEventListener('click', () => {
-    display.value = ''
+    if (num1 === null && buttonDivideStatus== false) {
+        buttonDivideStatus= true;
+        num1 = parseFloat(display.value);
+        display.value = ''
+    }
 });
 
 // igual
@@ -74,6 +87,18 @@ equal.addEventListener('click', () => {
         clear();
     }
     buttonEqualStatus = true;
+    if(buttonMinusStatus=== true){
+        display.value= RESTAR(num1, num2);
+        clear();
+    }
+    if(buttonTimesStatus ==true){
+        display.value= MULTIPLICAR(num1, num2);
+        clear();
+    }
+    if(buttonDivideStatus ==true){
+        display.value= DIVIDIR(num1, num2);
+        clear();
+    }
 });
 
 const Cero = document.getElementById('0');
@@ -133,6 +158,12 @@ DOT.addEventListener('click', () => {
 
 });
 
+DE.addEventListener('click',()=>{
+    if (buttonEqualStatus) return;
+    const currentValue = display.value;
+    display.value= currentValue.slice(0, -1);   
+});
+
 Seven.addEventListener('click', () => {
     if (buttonEqualStatus) return;
     display.value += Seven.value;
@@ -163,7 +194,15 @@ DobleCero.addEventListener('click', () => {
 function SUMAR(num1, num2) {
     return num1 + num2;
 }
-
+function RESTAR(num1, num2){
+    return num1-num2;
+}
+function MULTIPLICAR(num1, num2){
+    return num1*num2;
+}
+function DIVIDIR(num1, num2){
+    return num1/num2;
+}    
 // borramos las variables
 function clear() {
     num1 = null;
