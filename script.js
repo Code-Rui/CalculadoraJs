@@ -1,6 +1,8 @@
 //  hacer match cada elemento
 const display = document.getElementById('display');
 
+const history = document.getElementById('mini-historial');
+
 const AC = document.getElementById('ac');
 const DOT = document.getElementById('dot');
 const DE = document.getElementById('de');
@@ -27,7 +29,7 @@ const equal = document.getElementById('=');
 
 var num1 = null;
 var num2 = null;
-// var result = null;
+var result = false;
 
 var buttonAddStatus = false; // suma
 var buttonMinusStatus = false; // resta
@@ -47,31 +49,35 @@ plus.addEventListener('click', () => {
         buttonAddStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
+        // añaadimos el historial
+        history.innerHTML = num1 + '+';
+    } else {
+        num2 = parseFloat(display.value);
+        display.value = SUMAR(num1, num2);
+        num1 = parseFloat(display.value);
+        result = true;
+        // añaadimos el historial
+        // preguntamos si existe un caracter +, al ultimo caracter
+        history.innerHTML += history.innerHTML.charAt(history.innerHTML.length - 1) === '+' ? num2 : '+' + num2;
     }
-    // else {
-    //     num2 = parseFloat(display.value);
-    //     display.value = ''
-    //     // display.value = SUMAR(num1, num2);
-    // }
-    // console.log(num1, num2);
 });
 minus.addEventListener('click', () => {
-    if (num1 === null && buttonMinusStatus=== false) {
-        buttonMinusStatus= true;
+    if (num1 === null && buttonMinusStatus === false) {
+        buttonMinusStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
     }
 });
 times.addEventListener('click', () => {
-    if (num1 === null && buttonTimesStatus=== false) {
-        buttonTimesStatus= true;
+    if (num1 === null && buttonTimesStatus === false) {
+        buttonTimesStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
     }
 });
 divide.addEventListener('click', () => {
-    if (num1 === null && buttonDivideStatus== false) {
-        buttonDivideStatus= true;
+    if (num1 === null && buttonDivideStatus == false) {
+        buttonDivideStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
     }
@@ -87,16 +93,16 @@ equal.addEventListener('click', () => {
         clear();
     }
     buttonEqualStatus = true;
-    if(buttonMinusStatus=== true){
-        display.value= RESTAR(num1, num2);
+    if (buttonMinusStatus === true) {
+        display.value = RESTAR(num1, num2);
         clear();
     }
-    if(buttonTimesStatus ==true){
-        display.value= MULTIPLICAR(num1, num2);
+    if (buttonTimesStatus == true) {
+        display.value = MULTIPLICAR(num1, num2);
         clear();
     }
-    if(buttonDivideStatus ==true){
-        display.value= DIVIDIR(num1, num2);
+    if (buttonDivideStatus == true) {
+        display.value = DIVIDIR(num1, num2);
         clear();
     }
 });
@@ -107,31 +113,55 @@ const DobleCero = document.getElementById('00');
 // detectamos el evento click de cada elemento
 one.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += one.value;
 });
 
 two.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += two.value;
 });
 
 three.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += three.value;
 });
 
 four.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += four.value;
 });
 
 five.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += five.value;
 });
 
 six.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += six.value;
 });
 
@@ -158,51 +188,72 @@ DOT.addEventListener('click', () => {
 
 });
 
-DE.addEventListener('click',()=>{
+DE.addEventListener('click', () => {
     if (buttonEqualStatus) return;
     const currentValue = display.value;
-    display.value= currentValue.slice(0, -1);   
+    display.value = currentValue.slice(0, -1);
 });
 
 Seven.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += Seven.value;
 });
 
 eigth.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += eigth.value;
 });
 
 Nine.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += Nine.value;
 });
 
 Cero.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += Cero.value;
 });
 
 DobleCero.addEventListener('click', () => {
     if (buttonEqualStatus) return;
+    if (result) {
+        display.value = '';
+        result = false;
+    }
     display.value += DobleCero.value;
 });
 
 // funciones para las operaciones
 // sumar
 function SUMAR(num1, num2) {
+    console.log(num1, num2);
     return num1 + num2;
 }
-function RESTAR(num1, num2){
-    return num1-num2;
+function RESTAR(num1, num2) {
+    return num1 - num2;
 }
-function MULTIPLICAR(num1, num2){
-    return num1*num2;
+function MULTIPLICAR(num1, num2) {
+    return num1 * num2;
 }
-function DIVIDIR(num1, num2){
-    return num1/num2;
-}    
+function DIVIDIR(num1, num2) {
+    return num1 / num2;
+}
 // borramos las variables
 function clear() {
     num1 = null;
@@ -213,4 +264,5 @@ function clear() {
     buttonMinusStatus = false;
     buttonTimesStatus = false;
     buttonDivideStatus = false;
+    history.innerHTML = '';
 }
