@@ -80,7 +80,19 @@ divide.addEventListener('click', () => {
         buttonDivideStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
-    }
+       // añaadimos el historial
+    history.innerHTML = num1 + '/';
+    } else {
+    num2 = parseFloat(display.value);
+    display.value = DIVIDIR(num1, num2);
+    num1 = parseFloat(display.value);
+    result = true;
+    // añaadimos el historial
+    // preguntamos si existe un caracter +, al ultimo caracter
+    history.innerHTML += history.innerHTML.charAt(history.innerHTML.length - 1) === '/' ? num2 : '/' + num2;
+}
+
+    
 });
 
 // igual
