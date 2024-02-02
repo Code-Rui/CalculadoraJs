@@ -27,17 +27,17 @@ const divide = document.getElementById('/');
 
 const equal = document.getElementById('=');
 
-var num1 = null;
-var num2 = null;
-var result = false;
+let num1 = null;
+let num2 = null;
+let result = false;
 
-var buttonAddStatus = false; // suma
-var buttonMinusStatus = false; // resta
-var buttonTimesStatus = false; // multiplicacion
-var buttonDivideStatus = false; // division
+let buttonAddStatus = false; // suma
+let buttonMinusStatus = false; // resta
+let buttonTimesStatus = false; // multiplicacion
+let buttonDivideStatus = false; // division
 
 
-var buttonEqualStatus = false;
+let buttonEqualStatus = false;
 
 //events operations
 // SUMAR
