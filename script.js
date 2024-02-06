@@ -73,6 +73,15 @@ times.addEventListener('click', () => {
         buttonTimesStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
+        history.innerHTML = num1 + '*';
+    } else {
+        num2 = parseFloat(display.value);
+        display.value = MULTIPLICAR(num1, num2);
+        num1 = parseFloat(display.value);
+        result = true;
+        // añaadimos el historial
+        // preguntamos si existe un caracter +, al ultimo caracter
+        history.innerHTML += history.innerHTML.charAt(history.innerHTML.length - 1) === '*' ? num2 : '*' + num2;
     }
 });
 divide.addEventListener('click', () => {
@@ -80,7 +89,19 @@ divide.addEventListener('click', () => {
         buttonDivideStatus = true;
         num1 = parseFloat(display.value);
         display.value = ''
+        // añaadimos el historial
+        history.innerHTML = num1 + '/';
+    } else {
+        num2 = parseFloat(display.value);
+        display.value = DIVIDIR(num1, num2);
+        num1 = parseFloat(display.value);
+        result = true;
+        // añaadimos el historial
+        // preguntamos si existe un caracter +, al ultimo caracter
+        history.innerHTML += history.innerHTML.charAt(history.innerHTML.length - 1) === '/' ? num2 : '/' + num2;
     }
+
+
 });
 
 // igual
@@ -266,3 +287,28 @@ function clear() {
     buttonDivideStatus = false;
     history.innerHTML = '';
 }
+
+
+let _New = [
+    {
+        nombres: "Alberto N",
+        experiencia: 8000
+    },
+    {
+        nombres: "Alberto N2",
+        experiencia: 555
+    },
+    123
+]
+// import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
+console.log('mi-uuid, ', uuidv4());
