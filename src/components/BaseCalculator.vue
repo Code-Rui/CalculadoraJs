@@ -20,6 +20,7 @@ onMounted(() => {
           :content="btn.value"
           :color="btn.color"
           :class="btn?.value === '=' && 'col-span-2'"
+          
         />
       </div>
     </div>
