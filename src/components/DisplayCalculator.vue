@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import {useOperationsStore} from "../store/operations.store";
+import { useOperationsStore } from "../stores/operations.store";
 
 const operationsStore = useOperationsStore();
-const { history,display}= storeToRefs(operationsStore);
+const { history, display } = storeToRefs(operationsStore);
+
 </script>
 <template>
   <div class="h-[70px] bg-[#202e3d] w-full rounded-sm p-2 text-right font-sans">

@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import DisplayCalculator from './DisplayCalculator.vue'
-import ButtonCalculator from './ButtonCalculator.vue'
-import BTNS from './buttons'
-import { onMounted, ref } from 'vue'
-import {useOperationsStore} from '../store/operations.store'
-import { storeToRefs } from 'pinia'
-import { toast } from 'vue3-toastify'
-const operationsStore=useOperationsStore();
-const {display}=storeToRefs(operationsStore)
-const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST,ADD} = operationsStore;
+import DisplayCalculator from "./DisplayCalculator.vue";
+import ButtonCalculator from "./ButtonCalculator.vue";
+import BTNS from "./buttons";
+import { onMounted, ref } from "vue";
+import { useOperationsStore } from "../stores/operations.store";
+import { storeToRefs } from "pinia";
+import { toast } from "vue3-toastify";
 
-const buttons = ref()
+const operationsStore = useOperationsStore();
+const { display } = storeToRefs(operationsStore);
+const { CONCATENATE, CLEAR_DISPLAY, DELETE_LAST } = operationsStore;
+
+const buttons = ref();
 onMounted(() => {
-  buttons.value = BTNS
-})
+  buttons.value = BTNS;
+});
 
 function handleClick(value: string) {
   if (value === "DE") {
@@ -55,9 +56,6 @@ function handleClick(value: string) {
     CONCATENATE(displayArray.join(""));
     return;
   }
-  if (value=="=") {
-    
-  }
   // ----------------------------------------------
   CONCATENATE(value);
   if (value === "AC") CLEAR_DISPLAY();
@@ -75,6 +73,7 @@ function handleClick(value: string) {
           :content="btn.value"
           :color="btn.color"
           :class="btn?.value === '=' && 'col-span-2'"
+          @click="handleClick(btn.value)"
         />
       </div>
     </div>
