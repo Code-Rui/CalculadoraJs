@@ -8,34 +8,56 @@ import { storeToRefs } from 'pinia'
 import { toast } from 'vue3-toastify'
 const operationsStore=useOperationsStore();
 const {display}=storeToRefs(operationsStore)
-const {CONCATENATE,CLEAR_DISPLAY} = operationsStore;
+const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST} = operationsStore;
 
 const buttons = ref()
 onMounted(() => {
   buttons.value = BTNS
 })
 
-function handleClick(value:string){
+function handleClick(value: string) {
+  if (value === "DE") {
+    DELETE_LAST();
+    return;
+  } // operadores
+  let operators = ["+", "-", "*", "/"];
+  // verificamos si el valor es un operador se esta repitiendo
+  // volvemos un array de string display
+  let displayArray = display.value.split(""); // ["4","5","6","/"] // length=4
+  // validar el ultimo valor del display
+  let lastValue = displayArray[displayArray.length - 1]; //  /
 
-//operadores 
-let operators =["+","-","*","/"];
-
- 
-let displayArray=display.value.split("");
-
-let LastValue = displayArray[displayArray.length -1]
-
-  if(LastValue==="0" && operators.includes(value)) {
-    toast.error("Debe ingreasr un numero diferente a 0")
+  // validamos si el ultimo valor es un punto y el valor actual es un punto entonces retornamos
+  if (value === "." && display.value.includes(".")) {
+    toast.error("No se puede agregar dos puntos");
     return;
   }
-  CONCATENATE(value);
- if (value=== "AC") {
-  CLEAR_DISPLAY();
- }
- 
- 
 
+  if (value === "00" && display.value === "0") {
+    value === "00" && toast.error("No se puede agregar 00");
+    return;
+  }
+
+  if (lastValue === "0" && operators.includes(value)) {
+    value === "/" && toast.error("No se puede dividir por 0");
+    value === "*" && toast.error("No se puede multiplicar por 0");
+    value === "+" && toast.error("No se puede sumar 0");
+    value === "-" && toast.error("No se puede restar 0");
+    return;
+  }
+  // validamos si el ultimo caracter es un operador
+  if (operators.includes(lastValue) && operators.includes(value)) {
+    // si el ultimo valor es un operador y el valor actual es un operador
+    // reemplazamos el ultimo valor por el valor actual
+    displayArray[displayArray.length - 1] = value;
+    CLEAR_DISPLAY();
+    // unimos el array en un string
+    CONCATENATE(displayArray.join(""));
+    return;
+  }
+  // ----------------------------------------------
+  CONCATENATE(value);
+  if (value === "AC") CLEAR_DISPLAY();
 }
 </script>
 <template>
@@ -56,3 +78,4 @@ let LastValue = displayArray[displayArray.length -1]
     </div>
   </div>
 </template>
+
