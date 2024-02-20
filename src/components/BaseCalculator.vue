@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia'
 import { toast } from 'vue3-toastify'
 const operationsStore=useOperationsStore();
 const {display}=storeToRefs(operationsStore)
-const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST,ADD} = operationsStore;
+const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST,EQUALS,ADD,SUBTRACT,MULTIPLY,DIVISION} = operationsStore;
 
 const buttons = ref()
 onMounted(() => {
@@ -55,13 +55,41 @@ function handleClick(value: string) {
     CONCATENATE(displayArray.join(""));
     return;
   }
-  if (value=="=") {
-    
-  }
+  
   // ----------------------------------------------
+  
+
+  if (value === "+") {
+    ADD();
+    return;
+  }
+
+  if (value === "-") {
+    SUBTRACT();
+    return;
+  }
+
+  if (value === "*") {
+    MULTIPLY();
+    return;
+  }
+
+  if (value === "/") {
+    DIVISION();
+    return;
+  }
+
   CONCATENATE(value);
   if (value === "AC") CLEAR_DISPLAY();
+
+  if (value === "=") {
+    EQUALS();
+    return;
+  }
+  
 }
+
+
 </script>
 <template>
   <div class="col-span-2 hidden"></div>
