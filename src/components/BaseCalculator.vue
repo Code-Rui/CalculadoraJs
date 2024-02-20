@@ -9,7 +9,7 @@ import { toast } from "vue3-toastify";
 
 const operationsStore = useOperationsStore();
 const { display } = storeToRefs(operationsStore);
-const { CONCATENATE, CLEAR_DISPLAY, DELETE_LAST } = operationsStore;
+const { CONCATENATE, CLEAR_DISPLAY, DELETE_LAST, TO_HISTORY } = operationsStore;
 
 const buttons = ref();
 onMounted(() => {
@@ -17,6 +17,10 @@ onMounted(() => {
 });
 
 function handleClick(value: string) {
+  if (value === "=") {
+    TO_HISTORY();
+    return;
+  }
   if (value === "DE") {
     DELETE_LAST();
     return;
