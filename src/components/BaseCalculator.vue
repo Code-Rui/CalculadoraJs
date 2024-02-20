@@ -8,7 +8,7 @@ import { storeToRefs } from "pinia";
 import { toast } from "vue3-toastify";
 
 const operationsStore = useOperationsStore();
-const { display } = storeToRefs(operationsStore);
+const { display, view_result } = storeToRefs(operationsStore);
 const { CONCATENATE, CLEAR_DISPLAY, DELETE_LAST, TO_HISTORY } = operationsStore;
 
 const buttons = ref();
@@ -17,6 +17,7 @@ onMounted(() => {
 });
 
 function handleClick(value: string) {
+  if (view_result.value) CLEAR_DISPLAY();
   if (value === "=") {
     TO_HISTORY();
     return;
