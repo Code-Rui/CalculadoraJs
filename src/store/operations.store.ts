@@ -63,8 +63,8 @@ export const useOperationsStore = defineStore("operations", {
           break;
       }
       this.display = this.result.toString();
-      this.history.push(`${this.num1} ${this.lastOperator} ${this.num2} = ${this.result}`);
-      this.CLEAR_DISPLAY();
+      this.history.push(`${this.num1} ${this.lastOperator} ${this.num2}`);
+      
       
     },
   },
