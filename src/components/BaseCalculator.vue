@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia'
 import { toast } from 'vue3-toastify'
 const operationsStore=useOperationsStore();
 const {display}=storeToRefs(operationsStore)
-const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST} = operationsStore;
+const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST,ADD} = operationsStore;
 
 const buttons = ref()
 onMounted(() => {
@@ -54,6 +54,9 @@ function handleClick(value: string) {
     // unimos el array en un string
     CONCATENATE(displayArray.join(""));
     return;
+  }
+  if (value=="=") {
+    
   }
   // ----------------------------------------------
   CONCATENATE(value);
