@@ -7,8 +7,8 @@ import {useOperationsStore} from '../store/operations.store'
 import { storeToRefs } from 'pinia'
 import { toast } from 'vue3-toastify'
 const operationsStore=useOperationsStore();
-const {display}=storeToRefs(operationsStore)
-const {CONCATENATE,CLEAR_DISPLAY,DELETE_LAST,EQUALS,ADD,SUBTRACT,MULTIPLY,DIVISION} = operationsStore;
+const { display, view_result } = storeToRefs(operationsStore);
+const { CONCATENATE, CLEAR_DISPLAY, DELETE_LAST, TO_HISTORY } = operationsStore;
 
 const buttons = ref()
 onMounted(() => {
@@ -16,6 +16,11 @@ onMounted(() => {
 })
 
 function handleClick(value: string) {
+  if (view_result.value) CLEAR_DISPLAY();
+  if (value === "=") {
+    TO_HISTORY();
+    return;
+  }
   if (value === "DE") {
     DELETE_LAST();
     return;
@@ -55,38 +60,9 @@ function handleClick(value: string) {
     CONCATENATE(displayArray.join(""));
     return;
   }
-  
   // ----------------------------------------------
-  
-
-  if (value === "+") {
-    ADD();
-    return;
-  }
-
-  if (value === "-") {
-    SUBTRACT();
-    return;
-  }
-
-  if (value === "*") {
-    MULTIPLY();
-    return;
-  }
-
-  if (value === "/") {
-    DIVISION();
-    return;
-  }
-
   CONCATENATE(value);
   if (value === "AC") CLEAR_DISPLAY();
-
-  if (value === "=") {
-    EQUALS();
-    return;
-  }
-  
 }
 
 
