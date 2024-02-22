@@ -31,7 +31,7 @@ export const useOperationsStore = defineStore("operations", {
     TO_HISTORY(): void {
       // let operators = ["+", "-", "*", "/"];
       // solo split entre los operadores con regex //3.1+3.2+6.1
-      this.history = this.display.split(/(\+|\-|\*|\/)/);["3.1", "+", "3.2", "+", "6.1"]
+      this.history = this.display.split(/(\+|\-|\*|\/)/);
       this.display = "0";
       this.CALCULATE();
     },
