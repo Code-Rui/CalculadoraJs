@@ -12,6 +12,8 @@ const { display, view_result } = storeToRefs(operationsStore);
 const { CONCATENATE, CLEAR_DISPLAY, DELETE_LAST, TO_HISTORY } = operationsStore;
 
 const buttons = ref();
+const newNumber = ref<string>("");
+
 onMounted(() => {
   buttons.value = BTNS;
 });
@@ -19,14 +21,17 @@ onMounted(() => {
 function handleClick(value: string) {
   if (view_result.value) CLEAR_DISPLAY();
   if (value === "=") {
+    newNumber.value = "";
     TO_HISTORY();
     return;
   }
   if (value === "DE") {
+    newNumber.value = "";
     DELETE_LAST();
     return;
   } // operadores
   let operators = ["+", "-", "*", "/"];
+  if (operators.includes(value)) newNumber.value = "";
   // verificamos si el valor es un operador se esta repitiendo
   // volvemos un array de string display
   let displayArray = display.value.split(""); // ["4","5","6","/"] // length=4
@@ -34,10 +39,25 @@ function handleClick(value: string) {
   let lastValue = displayArray[displayArray.length - 1]; //  /
 
   // validamos si el ultimo valor es un punto y el valor actual es un punto entonces retornamos
-  if (value === "." && display.value.includes(".")) {
+  if (value === "." && newNumber.value.includes(".")) {
     toast.error("No se puede agregar dos puntos");
     return;
   }
+  if (!operators.includes(value)) {
+    // newNumber.value += value;
+    // !newNumber.value.includes(".") && (value = "0.");
+    if (!newNumber.value && value === ".") {
+      newNumber.value += "0.";
+      value = "0.";
+    } else {
+      newNumber.value += value;
+    }
+    // concatenamos el valor al nuevo numero
+  }
+  // if (value === "." && display.value.includes(".")) {
+  //   toast.error("No se puede agregar dos puntos");
+  //   return;
+  // }
 
   if (value === "00" && display.value === "0") {
     value === "00" && toast.error("No se puede agregar 00");
@@ -63,7 +83,10 @@ function handleClick(value: string) {
   }
   // ----------------------------------------------
   CONCATENATE(value);
-  if (value === "AC") CLEAR_DISPLAY();
+  if (value === "AC") {
+    newNumber.value = "";
+    CLEAR_DISPLAY();
+  }
 }
 </script>
 <template>
